@@ -84,6 +84,40 @@
     align-items: center;
   }
 
+  .lang {
+    align-self: center;
+    display: inline-flex;
+    gap: 1px;
+    padding: 2px;
+    margin: 16px 0 0;
+    background: var(--glass);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+  }
+  .lang button {
+    appearance: none;
+    -webkit-appearance: none;
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    font: 600 .68rem/1 var(--sans);
+    letter-spacing: .08em;
+    min-width: 34px;
+    min-height: 28px;
+    padding: 0 9px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: color .18s ease, background-color .18s ease;
+  }
+  .lang button:hover { color: var(--text); }
+  .lang button[aria-pressed="true"] {
+    color: #001938;
+    background: linear-gradient(90deg, #2ccbd9, #ff4f85 60%, #ffb347);
+  }
+  .lang button:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
+
   .logo {
     width: min(100%, 400px);
     height: auto;
@@ -108,7 +142,7 @@
   }
 
   .bio {
-    margin: 28px 4px 0;
+    margin: 20px 4px 0;
     text-align: left;
     font-family: var(--serif);
     font-size: 1.15rem;
@@ -205,7 +239,7 @@
   .links a:hover .chevron { transform: translateX(3px); opacity: 1; }
 
   /* gentle entrance */
-  .logo, .bio, .slogan, .links li { animation: rise .7s cubic-bezier(.2,.7,.2,1) both; }
+  .lang, .logo, .bio, .slogan, .links li { animation: rise .7s cubic-bezier(.2,.7,.2,1) both; }
   .bio { animation-delay: .10s; }
   .slogan { animation-delay: .14s; }
   .links li:nth-child(1) { animation-delay: .18s; }
@@ -240,41 +274,50 @@
 </svg>
 <main>
   <h1 class="visually-hidden">The Nocturne Company</h1>
-  <img class="logo" src="assets/logo.jpg" width="800" height="800" alt="The Nocturne Company logo: a colorful chameleon wearing headphones. Stay curious, try everything, get it wrong, make it anyway.">
+  <img class="logo" src="assets/logo.jpg" width="800" height="800" alt="The Nocturne Company – logo showing a colorful chameleon wearing headphones" data-i18n-alt="logo_alt">
+  <!-- BUILD:LANG:START (wird von Konfiguration/build.py erzeugt, nicht von Hand ändern) -->
+  <div class="lang" role="group" aria-label="Language">
+    <button type="button" data-lang="de" lang="de" title="Deutsch" aria-pressed="false">DE</button>
+    <button type="button" data-lang="en" lang="en" title="English" aria-pressed="true">EN</button>
+    <button type="button" data-lang="es" lang="es" title="Español" aria-pressed="false">ES</button>
+  </div>
+  <!-- BUILD:LANG:END -->
 
+  <!-- BUILD:BIO:START (wird von Konfiguration/build.py erzeugt, nicht von Hand ändern) -->
   <div class="bio">
     <p>The Nocturne Company is an interdisciplinary collective of artists and people who simply love music. Some of us know a lot about one thing, most of us know a little about many, and that mix is the point.</p>
     <p>We bring curiosity, half-knowledge and experience from other fields to the table and build things together: songs, lyrics, images, sound design, video. We work with digital instruments, samples, AI tools and our own words, and we keep trying out what the next tool can do.</p>
-    <p>The results range from dance-pop for a wedding to Eurodance for Halloween to schlager at 160&nbsp;BPM. We have no fixed genre and no business plan.</p>
+    <p>The results range from dance-pop for a wedding to Eurodance for Halloween to schlager at 160 BPM. We have no fixed genre and no business plan.</p>
   </div>
-  <p class="slogan">Stay curious. Try everything. Get it wrong. Make it anyway.</p>
+  <p class="slogan" lang="en">Stay curious. Try everything. Get it wrong. Make it anyway.</p>
+  <!-- BUILD:BIO:END -->
 
   <ul class="links">
     <li>
       <a href="https://open.spotify.com/intl-de/artist/36EKKSVjNU8UJFuWZLhq8n" target="_blank" rel="noopener">
         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M6.8 9.4c3.6-1.1 7.9-.8 10.9 1.1"/><path d="M7.6 12.6c3-.8 5.9-.5 8.4 1"/><path d="M8.4 15.6c2.3-.5 4.3-.3 6.1.8"/></svg>
-        <span class="label"><strong>Spotify</strong><span>Artist page</span></span>
+        <span class="label"><strong>Spotify</strong><span data-i18n="artist_page">Artist page</span></span>
         <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
       </a>
     </li>
     <li>
       <a href="https://music.apple.com/de/artist/the-nocturne-company/6817115408" target="_blank" rel="noopener">
         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V6.8l10-2V16.5"/><path d="M9 10.6l10-2"/><circle cx="6.8" cy="18" r="2.2"/><circle cx="16.8" cy="16.5" r="2.2"/></svg>
-        <span class="label"><strong>Apple Music</strong><span>Artist page</span></span>
+        <span class="label"><strong>Apple Music</strong><span data-i18n="artist_page">Artist page</span></span>
         <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
       </a>
     </li>
     <li>
       <a href="https://www.youtube.com/channel/UC63dmYg6vld1JsT-LJMxPLg" target="_blank" rel="noopener">
         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10 9.4l5 2.6-5 2.6z" fill="url(#tnc-grad)"/></svg>
-        <span class="label"><strong>YouTube</strong><span>Videos and music</span></span>
+        <span class="label"><strong>YouTube</strong><span data-i18n="videos_music">Videos and music</span></span>
         <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
       </a>
     </li>
     <li>
       <a href="https://music.amazon.co.uk/artists/B0HLCH98Y6/the-nocturne-company" target="_blank" rel="noopener">
         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 17.5V6.2l9-2v11.3"/><circle cx="6.8" cy="17.5" r="2.2"/><circle cx="15.8" cy="15.5" r="2.2"/></svg>
-        <span class="label"><strong>Amazon Music</strong><span>Artist page</span></span>
+        <span class="label"><strong>Amazon Music</strong><span data-i18n="artist_page">Artist page</span></span>
         <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
       </a>
     </li>
@@ -287,5 +330,139 @@
     </li>
   </ul>
 </main>
+
+<!-- BUILD:DATA:START (wird von Konfiguration/build.py erzeugt, nicht von Hand ändern) -->
+<script type="application/json" id="tnc-i18n">
+{
+  "default": "en",
+  "order": [
+    "de",
+    "en",
+    "es"
+  ],
+  "languages": {
+    "de": {
+      "label": "DE",
+      "name": "Deutsch",
+      "paragraphs": [
+        "The Nocturne Company ist ein interdisziplinäres Kollektiv aus Künstlern und Menschen, die einfach Musik lieben. Manche von uns wissen viel über eine Sache, die meisten wenig über vieles, und genau diese Mischung macht den Reiz aus.",
+        "Wir bringen Neugier, Halbwissen und Erfahrung aus ganz anderen Bereichen mit und bauen gemeinsam Dinge: Songs, Texte, Bilder, Sounddesign, Video. Wir arbeiten mit digitalen Instrumenten, Samples, KI-Werkzeugen und eigenen Worten und probieren aus, was das nächste Werkzeug kann.",
+        "Das Ergebnis reicht von Dance-Pop für die Hochzeit über Eurodance zu Halloween bis zum Schlager mit 160 BPM. Wir haben kein festes Genre und keinen Businessplan."
+      ],
+      "ui": {
+        "artist_page": "Künstlerseite",
+        "videos_music": "Videos und Musik",
+        "logo_alt": "The Nocturne Company – Logo, das ein buntes Chamäleon mit Kopfhörern zeigt",
+        "language": "Sprache"
+      }
+    },
+    "en": {
+      "label": "EN",
+      "name": "English",
+      "paragraphs": [
+        "The Nocturne Company is an interdisciplinary collective of artists and people who simply love music. Some of us know a lot about one thing, most of us know a little about many, and that mix is the point.",
+        "We bring curiosity, half-knowledge and experience from other fields to the table and build things together: songs, lyrics, images, sound design, video. We work with digital instruments, samples, AI tools and our own words, and we keep trying out what the next tool can do.",
+        "The results range from dance-pop for a wedding to Eurodance for Halloween to schlager at 160 BPM. We have no fixed genre and no business plan."
+      ],
+      "ui": {
+        "artist_page": "Artist page",
+        "videos_music": "Videos and music",
+        "logo_alt": "The Nocturne Company – logo showing a colorful chameleon wearing headphones",
+        "language": "Language"
+      }
+    },
+    "es": {
+      "label": "ES",
+      "name": "Español",
+      "paragraphs": [
+        "The Nocturne Company es un colectivo interdisciplinar de artistas y personas a las que, simplemente, les encanta la música. Algunos de nosotros sabemos mucho sobre un tema concreto, la mayoría sabemos un poco de muchas cosas, y esa mezcla es precisamente la clave.",
+        "Aportamos curiosidad, conocimientos superficiales y experiencia de otros campos, y creamos cosas juntos: canciones, letras, imágenes, diseño de sonido y vídeo. Trabajamos con instrumentos digitales, samples, herramientas de IA y nuestras propias palabras, y no dejamos de probar lo que puede hacer la próxima herramienta.",
+        "Los resultados van desde el dance-pop para una boda hasta el eurodance para Halloween, pasando por el schlager a 160 BPM. No tenemos un género fijo ni un plan de negocio."
+      ],
+      "ui": {
+        "artist_page": "Página del artista",
+        "videos_music": "Vídeos y música",
+        "logo_alt": "The Nocturne Company – logotipo en el que aparece un camaleón de colores con unos auriculares puestos",
+        "language": "Idioma"
+      }
+    }
+  }
+}
+</script>
+<!-- BUILD:DATA:END -->
+
+<script>
+(function () {
+  var dataElement = document.getElementById('tnc-i18n');
+  var DATA;
+  try { DATA = JSON.parse(dataElement.textContent); } catch (e) { return; }
+
+  var SUPPORTED = DATA.order;
+  var DEFAULT = DATA.default;
+  var KEY = 'tnc-lang';
+  var bio = document.querySelector('.bio');
+  var group = document.querySelector('.lang');
+  var buttons = document.querySelectorAll('.lang button');
+  var texts = document.querySelectorAll('[data-i18n]');
+  var images = document.querySelectorAll('[data-i18n-alt]');
+
+  function each(list, fn) { Array.prototype.forEach.call(list, fn); }
+
+  function clean(code) {
+    code = String(code || '').toLowerCase().slice(0, 2);
+    return SUPPORTED.indexOf(code) > -1 ? code : null;
+  }
+  function fromUrl() {
+    try { return clean(new URLSearchParams(window.location.search).get('lang')); } catch (e) { return null; }
+  }
+  function fromStorage() {
+    try { return clean(window.localStorage.getItem(KEY)); } catch (e) { return null; }
+  }
+  function fromBrowser() {
+    var list = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language];
+    for (var i = 0; i < list.length; i++) {
+      var c = clean(list[i]);
+      if (c) return c;
+    }
+    return null;
+  }
+
+  // text for a key in a language, falling back to the default language
+  function ui(lang, key) {
+    var own = DATA.languages[lang] && DATA.languages[lang].ui[key];
+    return own || DATA.languages[DEFAULT].ui[key];
+  }
+
+  function apply(lang) {
+    document.documentElement.lang = lang;
+
+    if (bio) {
+      while (bio.firstChild) bio.removeChild(bio.firstChild);
+      DATA.languages[lang].paragraphs.forEach(function (text) {
+        var p = document.createElement('p');
+        p.textContent = text;
+        bio.appendChild(p);
+      });
+    }
+    each(texts, function (el) { el.textContent = ui(lang, el.getAttribute('data-i18n')); });
+    each(images, function (el) { el.setAttribute('alt', ui(lang, el.getAttribute('data-i18n-alt'))); });
+    if (group) group.setAttribute('aria-label', ui(lang, 'language'));
+    each(buttons, function (b) {
+      b.setAttribute('aria-pressed', b.getAttribute('data-lang') === lang ? 'true' : 'false');
+    });
+  }
+
+  each(buttons, function (b) {
+    b.addEventListener('click', function () {
+      var lang = b.getAttribute('data-lang');
+      apply(lang);
+      try { window.localStorage.setItem(KEY, lang); } catch (e) { /* storage unavailable, fine */ }
+    });
+  });
+
+  // priority: ?lang=de in the URL, then a saved choice, then the browser language, then the default
+  apply(fromUrl() || fromStorage() || fromBrowser() || DEFAULT);
+})();
+</script>
 </body>
 </html>
