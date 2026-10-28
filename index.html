@@ -238,6 +238,94 @@
   }
   .links a:hover .chevron { transform: translateX(3px); opacity: 1; }
 
+  .foot { width: 100%; margin-top: 26px; text-align: center; }
+  .legal-link {
+    display: inline-block;
+    padding: 10px 14px;
+    font-size: .75rem;
+    letter-spacing: .04em;
+    color: var(--muted);
+    text-decoration: underline;
+    text-decoration-color: rgba(174, 189, 214, .45);
+    text-underline-offset: 3px;
+    transition: color .18s ease, text-decoration-color .18s ease;
+  }
+  .legal-link:hover { color: var(--text); text-decoration-color: currentColor; }
+  .legal-link:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; border-radius: 6px; }
+
+  /* legal notice overlay (native <dialog>) */
+  html:has(dialog.legal[open]) { overflow: hidden; }
+  dialog.legal {
+    width: min(560px, calc(100vw - 32px));
+    max-width: none;
+    max-height: none;
+    margin: auto;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--text);
+    overflow: visible;
+  }
+  dialog.legal::backdrop {
+    background: rgba(0, 12, 32, .75);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+  }
+  dialog.legal[open] { animation: rise .25s ease both; }
+  .legal .panel {
+    position: relative;
+    max-height: calc(100vh - 48px);
+    max-height: calc(100dvh - 48px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 28px 24px 24px;
+    background: linear-gradient(180deg, #072a57 0%, #001938 100%);
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, .6), 0 0 60px rgba(224, 48, 106, .15);
+  }
+  .legal h2 { margin: 0 44px 18px 0; font: 600 1.5rem/1.2 var(--serif); }
+  .legal h3 {
+    margin: 22px 0 6px;
+    font: 600 .78rem/1.3 var(--sans);
+    letter-spacing: .04em;
+    color: var(--muted);
+  }
+  .legal .legal-body > h3:first-child { margin-top: 0; }
+  .legal p { margin: 0 0 1em; font-size: .98rem; line-height: 1.55; white-space: pre-line; overflow-wrap: anywhere; }
+  .legal .x {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    display: grid;
+    place-items: center;
+    font: 400 1.6rem/1 var(--sans);
+    color: var(--text);
+    background: var(--glass);
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: border-color .18s ease;
+  }
+  .legal .x:hover { border-color: rgba(255, 166, 43, .75); }
+  .legal .close-btn {
+    display: block;
+    margin: 12px auto 0;
+    min-height: 44px;
+    padding: 0 28px;
+    font: 600 .9rem/1 var(--sans);
+    letter-spacing: .04em;
+    color: #001938;
+    background: linear-gradient(90deg, #2ccbd9, #ff4f85 60%, #ffb347);
+    border: 0;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  .legal .x:focus-visible, .legal .close-btn:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
+
   /* gentle entrance */
   .lang, .logo, .bio, .slogan, .links li { animation: rise .7s cubic-bezier(.2,.7,.2,1) both; }
   .bio { animation-delay: .10s; }
@@ -329,6 +417,45 @@
       </a>
     </li>
   </ul>
+
+  <!-- BUILD:LEGAL:START (wird von Konfiguration/build.py erzeugt, nicht von Hand ändern) -->
+  <footer class="foot">
+    <a class="legal-link" href="#impressum" data-i18n="impressum_link">Legal Notice &amp; Privacy Policy</a>
+  </footer>
+  <dialog class="legal" id="impressum" aria-labelledby="impressum-title">
+    <div class="panel">
+      <button type="button" class="x" data-close data-i18n-aria="close" aria-label="Close">&times;</button>
+      <h2 id="impressum-title" data-i18n="impressum_link">Legal Notice &amp; Privacy Policy</h2>
+      <div class="legal-body" lang="de">
+        <h3>Angaben gemäß § 5 DDG</h3>
+        <p>MagniModi Entwicklung - Thomas Kalippke
+c/o IP-Management #6782
+Ludwig-Erhard-Str. 18
+20459 Hamburg</p>
+        <h3>Kontakt</h3>
+        <p>E-Mail: music-development@magnimodi.de</p>
+        <h3>Umsatzsteuer-Identifikationsnummer</h3>
+        <p>Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz: DE326881964</p>
+        <h3>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h3>
+        <p>Thomas Kalippke, Anschrift wie oben</p>
+        <h3>Datenschutz auf einen Blick</h3>
+        <p>Diese Seite setzt keine Cookies, enthält keine Analyse- oder Tracking-Werkzeuge, keine Werbung und keine Social-Media-Plugins. Es werden keine Schriftarten, Skripte oder sonstigen Inhalte von externen Servern nachgeladen. Besucherdaten werden von mir nicht erhoben, ausgewertet oder gespeichert.</p>
+        <h3>Hosting über GitHub Pages</h3>
+        <p>Diese Seite wird über GitHub Pages bereitgestellt. Anbieter ist GitHub Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA. Beim Aufruf der Seite verarbeitet GitHub technisch notwendige Verbindungsdaten, insbesondere die IP-Adresse, Datum und Uhrzeit des Zugriffs, die aufgerufene Adresse, die verweisende Seite sowie Browser- und Geräteinformationen, und protokolliert diese in Server-Logdateien. Ich habe auf diese Protokolle keinen Zugriff und werte sie nicht aus. Nach Angabe von GitHub richtet sich die Speicherdauer nach dem jeweiligen Zweck und gesetzlichen Pflichten.</p>
+        <p>Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Mein berechtigtes Interesse liegt in der sicheren und zuverlässigen Bereitstellung dieser Seite. Ohne diese Verarbeitung kann die Seite technisch nicht ausgeliefert werden.</p>
+        <h3>Datenübermittlung in die USA</h3>
+        <p>GitHub kann Daten in die USA übermitteln. GitHub ist nach eigener Angabe unter dem EU-US Data Privacy Framework zertifiziert und stützt sich zusätzlich auf die Standardvertragsklauseln der Europäischen Kommission. Weitere Informationen stehen in der Datenschutzerklärung von GitHub: https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement</p>
+        <h3>Lokale Speicherung der Sprachwahl</h3>
+        <p>Wenn Sie die Sprache über den Schalter DE/EN/ES wählen, wird diese Auswahl ausschließlich im lokalen Speicher Ihres Browsers (localStorage, Schlüssel „tnc-lang“) abgelegt, damit die Seite beim nächsten Besuch in der gewählten Sprache erscheint. Die Information wird nicht an mich oder Dritte übertragen. Sie ist für den von Ihnen gewünschten Dienst erforderlich (§ 25 Abs. 2 Nr. 2 TDDDG) und kann jederzeit in den Browsereinstellungen gelöscht werden.</p>
+        <h3>Externe Links</h3>
+        <p>Diese Seite verweist auf Spotify, Apple Music, YouTube, Amazon Music und Instagram. Erst wenn Sie einen dieser Links anklicken, verlassen Sie diese Seite, und es gelten die Datenschutzbestimmungen des jeweiligen Anbieters. Vor dem Klick findet keine Datenübertragung an diese Anbieter statt.</p>
+        <h3>Ihre Rechte</h3>
+        <p>Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch gegen die Verarbeitung Ihrer personenbezogenen Daten. Da ich selbst keine Besucherdaten speichere, richten sich Anfragen zu den Server-Logdateien in der Regel an GitHub (dpo@github.com). Bei Fragen können Sie sich auch an mich wenden (E-Mail oben). Zudem haben Sie das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren, zum Beispiel beim Hamburgischen Beauftragten für Datenschutz und Informationsfreiheit.</p>
+      </div>
+      <button type="button" class="close-btn" data-close data-i18n="close">Close</button>
+    </div>
+  </dialog>
+  <!-- BUILD:LEGAL:END -->
 </main>
 
 <!-- BUILD:DATA:START (wird von Konfiguration/build.py erzeugt, nicht von Hand ändern) -->
@@ -353,7 +480,98 @@
         "artist_page": "Künstlerseite",
         "videos_music": "Videos und Musik",
         "logo_alt": "The Nocturne Company – Logo, das ein buntes Chamäleon mit Kopfhörern zeigt",
-        "language": "Sprache"
+        "language": "Sprache",
+        "impressum_link": "Impressum \u0026 Datenschutz",
+        "close": "Schließen"
+      },
+      "impressum": {
+        "lang": "de",
+        "blocks": [
+          {
+            "type": "h",
+            "text": "Angaben gemäß § 5 DDG"
+          },
+          {
+            "type": "p",
+            "text": "MagniModi Entwicklung - Thomas Kalippke\nc/o IP-Management #6782\nLudwig-Erhard-Str. 18\n20459 Hamburg"
+          },
+          {
+            "type": "h",
+            "text": "Kontakt"
+          },
+          {
+            "type": "p",
+            "text": "E-Mail: music-development@magnimodi.de"
+          },
+          {
+            "type": "h",
+            "text": "Umsatzsteuer-Identifikationsnummer"
+          },
+          {
+            "type": "p",
+            "text": "Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz: DE326881964"
+          },
+          {
+            "type": "h",
+            "text": "Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV"
+          },
+          {
+            "type": "p",
+            "text": "Thomas Kalippke, Anschrift wie oben"
+          },
+          {
+            "type": "h",
+            "text": "Datenschutz auf einen Blick"
+          },
+          {
+            "type": "p",
+            "text": "Diese Seite setzt keine Cookies, enthält keine Analyse- oder Tracking-Werkzeuge, keine Werbung und keine Social-Media-Plugins. Es werden keine Schriftarten, Skripte oder sonstigen Inhalte von externen Servern nachgeladen. Besucherdaten werden von mir nicht erhoben, ausgewertet oder gespeichert."
+          },
+          {
+            "type": "h",
+            "text": "Hosting über GitHub Pages"
+          },
+          {
+            "type": "p",
+            "text": "Diese Seite wird über GitHub Pages bereitgestellt. Anbieter ist GitHub Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA. Beim Aufruf der Seite verarbeitet GitHub technisch notwendige Verbindungsdaten, insbesondere die IP-Adresse, Datum und Uhrzeit des Zugriffs, die aufgerufene Adresse, die verweisende Seite sowie Browser- und Geräteinformationen, und protokolliert diese in Server-Logdateien. Ich habe auf diese Protokolle keinen Zugriff und werte sie nicht aus. Nach Angabe von GitHub richtet sich die Speicherdauer nach dem jeweiligen Zweck und gesetzlichen Pflichten."
+          },
+          {
+            "type": "p",
+            "text": "Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Mein berechtigtes Interesse liegt in der sicheren und zuverlässigen Bereitstellung dieser Seite. Ohne diese Verarbeitung kann die Seite technisch nicht ausgeliefert werden."
+          },
+          {
+            "type": "h",
+            "text": "Datenübermittlung in die USA"
+          },
+          {
+            "type": "p",
+            "text": "GitHub kann Daten in die USA übermitteln. GitHub ist nach eigener Angabe unter dem EU-US Data Privacy Framework zertifiziert und stützt sich zusätzlich auf die Standardvertragsklauseln der Europäischen Kommission. Weitere Informationen stehen in der Datenschutzerklärung von GitHub: https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement"
+          },
+          {
+            "type": "h",
+            "text": "Lokale Speicherung der Sprachwahl"
+          },
+          {
+            "type": "p",
+            "text": "Wenn Sie die Sprache über den Schalter DE/EN/ES wählen, wird diese Auswahl ausschließlich im lokalen Speicher Ihres Browsers (localStorage, Schlüssel „tnc-lang“) abgelegt, damit die Seite beim nächsten Besuch in der gewählten Sprache erscheint. Die Information wird nicht an mich oder Dritte übertragen. Sie ist für den von Ihnen gewünschten Dienst erforderlich (§ 25 Abs. 2 Nr. 2 TDDDG) und kann jederzeit in den Browsereinstellungen gelöscht werden."
+          },
+          {
+            "type": "h",
+            "text": "Externe Links"
+          },
+          {
+            "type": "p",
+            "text": "Diese Seite verweist auf Spotify, Apple Music, YouTube, Amazon Music und Instagram. Erst wenn Sie einen dieser Links anklicken, verlassen Sie diese Seite, und es gelten die Datenschutzbestimmungen des jeweiligen Anbieters. Vor dem Klick findet keine Datenübertragung an diese Anbieter statt."
+          },
+          {
+            "type": "h",
+            "text": "Ihre Rechte"
+          },
+          {
+            "type": "p",
+            "text": "Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch gegen die Verarbeitung Ihrer personenbezogenen Daten. Da ich selbst keine Besucherdaten speichere, richten sich Anfragen zu den Server-Logdateien in der Regel an GitHub (dpo@github.com). Bei Fragen können Sie sich auch an mich wenden (E-Mail oben). Zudem haben Sie das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren, zum Beispiel beim Hamburgischen Beauftragten für Datenschutz und Informationsfreiheit."
+          }
+        ]
       }
     },
     "en": {
@@ -368,7 +586,98 @@
         "artist_page": "Artist page",
         "videos_music": "Videos and music",
         "logo_alt": "The Nocturne Company – logo showing a colorful chameleon wearing headphones",
-        "language": "Language"
+        "language": "Language",
+        "impressum_link": "Legal Notice \u0026 Privacy Policy",
+        "close": "Close"
+      },
+      "impressum": {
+        "lang": "de",
+        "blocks": [
+          {
+            "type": "h",
+            "text": "Angaben gemäß § 5 DDG"
+          },
+          {
+            "type": "p",
+            "text": "MagniModi Entwicklung - Thomas Kalippke\nc/o IP-Management #6782\nLudwig-Erhard-Str. 18\n20459 Hamburg"
+          },
+          {
+            "type": "h",
+            "text": "Kontakt"
+          },
+          {
+            "type": "p",
+            "text": "E-Mail: music-development@magnimodi.de"
+          },
+          {
+            "type": "h",
+            "text": "Umsatzsteuer-Identifikationsnummer"
+          },
+          {
+            "type": "p",
+            "text": "Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz: DE326881964"
+          },
+          {
+            "type": "h",
+            "text": "Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV"
+          },
+          {
+            "type": "p",
+            "text": "Thomas Kalippke, Anschrift wie oben"
+          },
+          {
+            "type": "h",
+            "text": "Datenschutz auf einen Blick"
+          },
+          {
+            "type": "p",
+            "text": "Diese Seite setzt keine Cookies, enthält keine Analyse- oder Tracking-Werkzeuge, keine Werbung und keine Social-Media-Plugins. Es werden keine Schriftarten, Skripte oder sonstigen Inhalte von externen Servern nachgeladen. Besucherdaten werden von mir nicht erhoben, ausgewertet oder gespeichert."
+          },
+          {
+            "type": "h",
+            "text": "Hosting über GitHub Pages"
+          },
+          {
+            "type": "p",
+            "text": "Diese Seite wird über GitHub Pages bereitgestellt. Anbieter ist GitHub Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA. Beim Aufruf der Seite verarbeitet GitHub technisch notwendige Verbindungsdaten, insbesondere die IP-Adresse, Datum und Uhrzeit des Zugriffs, die aufgerufene Adresse, die verweisende Seite sowie Browser- und Geräteinformationen, und protokolliert diese in Server-Logdateien. Ich habe auf diese Protokolle keinen Zugriff und werte sie nicht aus. Nach Angabe von GitHub richtet sich die Speicherdauer nach dem jeweiligen Zweck und gesetzlichen Pflichten."
+          },
+          {
+            "type": "p",
+            "text": "Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Mein berechtigtes Interesse liegt in der sicheren und zuverlässigen Bereitstellung dieser Seite. Ohne diese Verarbeitung kann die Seite technisch nicht ausgeliefert werden."
+          },
+          {
+            "type": "h",
+            "text": "Datenübermittlung in die USA"
+          },
+          {
+            "type": "p",
+            "text": "GitHub kann Daten in die USA übermitteln. GitHub ist nach eigener Angabe unter dem EU-US Data Privacy Framework zertifiziert und stützt sich zusätzlich auf die Standardvertragsklauseln der Europäischen Kommission. Weitere Informationen stehen in der Datenschutzerklärung von GitHub: https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement"
+          },
+          {
+            "type": "h",
+            "text": "Lokale Speicherung der Sprachwahl"
+          },
+          {
+            "type": "p",
+            "text": "Wenn Sie die Sprache über den Schalter DE/EN/ES wählen, wird diese Auswahl ausschließlich im lokalen Speicher Ihres Browsers (localStorage, Schlüssel „tnc-lang“) abgelegt, damit die Seite beim nächsten Besuch in der gewählten Sprache erscheint. Die Information wird nicht an mich oder Dritte übertragen. Sie ist für den von Ihnen gewünschten Dienst erforderlich (§ 25 Abs. 2 Nr. 2 TDDDG) und kann jederzeit in den Browsereinstellungen gelöscht werden."
+          },
+          {
+            "type": "h",
+            "text": "Externe Links"
+          },
+          {
+            "type": "p",
+            "text": "Diese Seite verweist auf Spotify, Apple Music, YouTube, Amazon Music und Instagram. Erst wenn Sie einen dieser Links anklicken, verlassen Sie diese Seite, und es gelten die Datenschutzbestimmungen des jeweiligen Anbieters. Vor dem Klick findet keine Datenübertragung an diese Anbieter statt."
+          },
+          {
+            "type": "h",
+            "text": "Ihre Rechte"
+          },
+          {
+            "type": "p",
+            "text": "Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch gegen die Verarbeitung Ihrer personenbezogenen Daten. Da ich selbst keine Besucherdaten speichere, richten sich Anfragen zu den Server-Logdateien in der Regel an GitHub (dpo@github.com). Bei Fragen können Sie sich auch an mich wenden (E-Mail oben). Zudem haben Sie das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren, zum Beispiel beim Hamburgischen Beauftragten für Datenschutz und Informationsfreiheit."
+          }
+        ]
       }
     },
     "es": {
@@ -383,7 +692,98 @@
         "artist_page": "Página del artista",
         "videos_music": "Vídeos y música",
         "logo_alt": "The Nocturne Company – logotipo en el que aparece un camaleón de colores con unos auriculares puestos",
-        "language": "Idioma"
+        "language": "Idioma",
+        "impressum_link": "Aviso legal y política de privacidad",
+        "close": "Cerrar"
+      },
+      "impressum": {
+        "lang": "de",
+        "blocks": [
+          {
+            "type": "h",
+            "text": "Angaben gemäß § 5 DDG"
+          },
+          {
+            "type": "p",
+            "text": "MagniModi Entwicklung - Thomas Kalippke\nc/o IP-Management #6782\nLudwig-Erhard-Str. 18\n20459 Hamburg"
+          },
+          {
+            "type": "h",
+            "text": "Kontakt"
+          },
+          {
+            "type": "p",
+            "text": "E-Mail: music-development@magnimodi.de"
+          },
+          {
+            "type": "h",
+            "text": "Umsatzsteuer-Identifikationsnummer"
+          },
+          {
+            "type": "p",
+            "text": "Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz: DE326881964"
+          },
+          {
+            "type": "h",
+            "text": "Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV"
+          },
+          {
+            "type": "p",
+            "text": "Thomas Kalippke, Anschrift wie oben"
+          },
+          {
+            "type": "h",
+            "text": "Datenschutz auf einen Blick"
+          },
+          {
+            "type": "p",
+            "text": "Diese Seite setzt keine Cookies, enthält keine Analyse- oder Tracking-Werkzeuge, keine Werbung und keine Social-Media-Plugins. Es werden keine Schriftarten, Skripte oder sonstigen Inhalte von externen Servern nachgeladen. Besucherdaten werden von mir nicht erhoben, ausgewertet oder gespeichert."
+          },
+          {
+            "type": "h",
+            "text": "Hosting über GitHub Pages"
+          },
+          {
+            "type": "p",
+            "text": "Diese Seite wird über GitHub Pages bereitgestellt. Anbieter ist GitHub Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA. Beim Aufruf der Seite verarbeitet GitHub technisch notwendige Verbindungsdaten, insbesondere die IP-Adresse, Datum und Uhrzeit des Zugriffs, die aufgerufene Adresse, die verweisende Seite sowie Browser- und Geräteinformationen, und protokolliert diese in Server-Logdateien. Ich habe auf diese Protokolle keinen Zugriff und werte sie nicht aus. Nach Angabe von GitHub richtet sich die Speicherdauer nach dem jeweiligen Zweck und gesetzlichen Pflichten."
+          },
+          {
+            "type": "p",
+            "text": "Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Mein berechtigtes Interesse liegt in der sicheren und zuverlässigen Bereitstellung dieser Seite. Ohne diese Verarbeitung kann die Seite technisch nicht ausgeliefert werden."
+          },
+          {
+            "type": "h",
+            "text": "Datenübermittlung in die USA"
+          },
+          {
+            "type": "p",
+            "text": "GitHub kann Daten in die USA übermitteln. GitHub ist nach eigener Angabe unter dem EU-US Data Privacy Framework zertifiziert und stützt sich zusätzlich auf die Standardvertragsklauseln der Europäischen Kommission. Weitere Informationen stehen in der Datenschutzerklärung von GitHub: https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement"
+          },
+          {
+            "type": "h",
+            "text": "Lokale Speicherung der Sprachwahl"
+          },
+          {
+            "type": "p",
+            "text": "Wenn Sie die Sprache über den Schalter DE/EN/ES wählen, wird diese Auswahl ausschließlich im lokalen Speicher Ihres Browsers (localStorage, Schlüssel „tnc-lang“) abgelegt, damit die Seite beim nächsten Besuch in der gewählten Sprache erscheint. Die Information wird nicht an mich oder Dritte übertragen. Sie ist für den von Ihnen gewünschten Dienst erforderlich (§ 25 Abs. 2 Nr. 2 TDDDG) und kann jederzeit in den Browsereinstellungen gelöscht werden."
+          },
+          {
+            "type": "h",
+            "text": "Externe Links"
+          },
+          {
+            "type": "p",
+            "text": "Diese Seite verweist auf Spotify, Apple Music, YouTube, Amazon Music und Instagram. Erst wenn Sie einen dieser Links anklicken, verlassen Sie diese Seite, und es gelten die Datenschutzbestimmungen des jeweiligen Anbieters. Vor dem Klick findet keine Datenübertragung an diese Anbieter statt."
+          },
+          {
+            "type": "h",
+            "text": "Ihre Rechte"
+          },
+          {
+            "type": "p",
+            "text": "Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch gegen die Verarbeitung Ihrer personenbezogenen Daten. Da ich selbst keine Besucherdaten speichere, richten sich Anfragen zu den Server-Logdateien in der Regel an GitHub (dpo@github.com). Bei Fragen können Sie sich auch an mich wenden (E-Mail oben). Zudem haben Sie das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren, zum Beispiel beim Hamburgischen Beauftragten für Datenschutz und Informationsfreiheit."
+          }
+        ]
       }
     }
   }
@@ -405,6 +805,10 @@
   var buttons = document.querySelectorAll('.lang button');
   var texts = document.querySelectorAll('[data-i18n]');
   var images = document.querySelectorAll('[data-i18n-alt]');
+  var ariaNodes = document.querySelectorAll('[data-i18n-aria]');
+  var dialog = document.getElementById('impressum');
+  var legalBody = dialog ? dialog.querySelector('.legal-body') : null;
+  var legalLink = document.querySelector('.legal-link');
 
   function each(list, fn) { Array.prototype.forEach.call(list, fn); }
 
@@ -433,6 +837,21 @@
     return own || DATA.languages[DEFAULT].ui[key];
   }
 
+  // legal notice text: own file for the language, otherwise the default one
+  function renderLegal(lang) {
+    if (!legalBody) return;
+    var own = DATA.languages[lang] && DATA.languages[lang].impressum;
+    var legal = own || (DATA.languages[DEFAULT] && DATA.languages[DEFAULT].impressum);
+    if (!legal) return;
+    while (legalBody.firstChild) legalBody.removeChild(legalBody.firstChild);
+    legalBody.setAttribute('lang', legal.lang);
+    legal.blocks.forEach(function (block) {
+      var el = document.createElement(block.type === 'h' ? 'h3' : 'p');
+      el.textContent = block.text;
+      legalBody.appendChild(el);
+    });
+  }
+
   function apply(lang) {
     document.documentElement.lang = lang;
 
@@ -447,6 +866,8 @@
     each(texts, function (el) { el.textContent = ui(lang, el.getAttribute('data-i18n')); });
     each(images, function (el) { el.setAttribute('alt', ui(lang, el.getAttribute('data-i18n-alt'))); });
     if (group) group.setAttribute('aria-label', ui(lang, 'language'));
+    each(ariaNodes, function (el) { el.setAttribute('aria-label', ui(lang, el.getAttribute('data-i18n-aria'))); });
+    renderLegal(lang);
     each(buttons, function (b) {
       b.setAttribute('aria-pressed', b.getAttribute('data-lang') === lang ? 'true' : 'false');
     });
@@ -459,6 +880,22 @@
       try { window.localStorage.setItem(KEY, lang); } catch (e) { /* storage unavailable, fine */ }
     });
   });
+
+  if (dialog) {
+    var openLegal = function () {
+      if (typeof dialog.showModal === 'function') { if (!dialog.open) dialog.showModal(); }
+      else { dialog.setAttribute('open', ''); }
+    };
+    var closeLegal = function () {
+      if (typeof dialog.close === 'function') { dialog.close(); } else { dialog.removeAttribute('open'); }
+    };
+    if (legalLink) legalLink.addEventListener('click', function (e) { e.preventDefault(); openLegal(); });
+    each(dialog.querySelectorAll('[data-close]'), function (b) { b.addEventListener('click', closeLegal); });
+    // a click on the dark backdrop (outside the panel) closes it as well; Esc works natively
+    dialog.addEventListener('click', function (e) { if (e.target === dialog) closeLegal(); });
+    dialog.addEventListener('close', function () { if (legalLink) legalLink.focus(); });
+    if (window.location.hash === '#impressum') openLegal();
+  }
 
   // priority: ?lang=de in the URL, then a saved choice, then the browser language, then the default
   apply(fromUrl() || fromStorage() || fromBrowser() || DEFAULT);
